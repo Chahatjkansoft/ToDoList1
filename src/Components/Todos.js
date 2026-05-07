@@ -1,7 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-export default function Todos({ todos, onDelete, onUpdate, onDone }) {
+export default function Todos({ todos, onDelete, onUpdate, onDone, onFavorite }) {
 
   return (
     <div className="container listCls" id="todoListContainer">
@@ -13,7 +13,8 @@ export default function Todos({ todos, onDelete, onUpdate, onDone }) {
       ) : (
         // 🔹 Render each todo item
         todos.map((todo, index) => (
-          <TodoItem key={todo.sNo} index={index} todo={todo} onDelete={onDelete} onUpdate={onUpdate} onDone={onDone} />
+          console.log("TodoItem=>",todo),
+          <TodoItem key={todo.sNo} index={index} todo={todo} onDelete={onDelete} onUpdate={onUpdate} onDone={onDone} onFavorite={onFavorite} />
         ))
       )}
     </div>

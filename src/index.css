@@ -56,7 +56,7 @@ body {
 /* Card */
 .itemCardCls {
   background: white;
-  padding: 18px 20px;
+  padding: 15px 20px;
   border-radius: 12px;
   border: 1px solid #e5e7eb;
   transition: all 0.25s ease;
@@ -334,4 +334,30 @@ button:hover {
 .actionBtns {
   display: flex;
   gap: 8px;
+}
+
+.actionBtns .btn{
+  height: 30px;
+  margin-top: 7px; 
+}
+
+.star {
+  cursor: pointer;
+  font-size: 28px;
+  color: #ccc;
+  user-select: none;
+  margin: 0px;
+}
+
+.star input {
+  display: none;
+}
+
+.star span {
+  transition: color 0.3s ease;
+}
+
+/* When checked → yellow star */
+.star input:checked + span {
+  color: gold;
 }

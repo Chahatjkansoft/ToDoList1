@@ -51,7 +51,8 @@ function useTodos() {
                 sNo: Date.now(),
                 title,
                 description,
-                status: true
+                status: true,
+                isFavorite: false
             };
 
             setAppData({ ...appData, todos: [...appData.todos, newTodo] });
@@ -85,6 +86,18 @@ function useTodos() {
         localStorage.removeItem("appData");
         setAppData({ user: null, todos: [] });
     };
+
+    const markFavorite = (item,flag) => {
+        debugger;
+        const updatedTodos = appData.todos.map((t) => {
+            if(t.sNo === item.sNo) {
+                return { ...t, isFavorite: flag };
+            }
+            return t;
+        });
+        setAppData({ ...appData, todos: updatedTodos });
+    }
+
     return {
         appData,
         editTodo,
@@ -94,7 +107,8 @@ function useTodos() {
         markDone,
         saveUser,
         setEditTodo,
-        resetData
+        resetData,
+        markFavorite
     };
 
 }
