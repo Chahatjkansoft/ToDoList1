@@ -49,7 +49,8 @@ export default function TodoItem({ todo, index, onDelete, onUpdate, onDone, onFa
     <div className="itemCardCls">
       <div className="topRow">
         <div className="textBlock">
-          <h4 style={{ textDecoration: todo.status ? "none" : "line-through" }}>
+          {/* //status true means not completed */}
+          <h4 style={{ textDecoration: todo.status ? "none" : "line-through" }}> 
             {todo.title}
           </h4>
           <p>{todo.description}</p>
@@ -69,6 +70,7 @@ export default function TodoItem({ todo, index, onDelete, onUpdate, onDone, onFa
             <input type="checkbox" onChange={handleFavorite} checked={todo.isFavorite} />
             <span>★</span>
           </label>
+          {/* //status true means not completed */}
           <button style={{ display: todo.status ? "" : "none" }} className="btn update" onClick={handleUpdate}> Update </button>
           <button className="btn delete" onClick={handleDelete}> Delete </button>
         </div>
