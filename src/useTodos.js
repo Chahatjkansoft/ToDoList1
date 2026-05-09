@@ -21,7 +21,10 @@ function useTodos() {
 
     // 🔹 Delete todo
     const deleteTodo = (item) => {
-        if (item.status === true) {
+        if (item.status === true && item.isFavorite === true) { //status true means not completed
+            if (!window.confirm("Task is favorite and not completed. Delete anyway?")) return;
+        }
+        if (item.status === true) { //status true means not completed
             if (!window.confirm("Task is not completed. Delete anyway?")) return;
         }
 
@@ -51,7 +54,7 @@ function useTodos() {
                 sNo: Date.now(),
                 title,
                 description,
-                status: true,
+                status: true, //status true means not completed
                 isFavorite: false
             };
 
