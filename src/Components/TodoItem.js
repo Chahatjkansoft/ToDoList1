@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function TodoItem({ todo, index, onDelete, onUpdate, onDone }) {
+export default function TodoItem({ todo, index, onDelete, onUpdate, onDone, onFavorite }) {
   // 🔹 Handle delete
   const handleDelete = () => {
     onDelete(todo);
@@ -20,6 +20,11 @@ export default function TodoItem({ todo, index, onDelete, onUpdate, onDone }) {
     const isChecked = e.target.checked;
     console.log(isChecked);
     handleDone(!isChecked)
+  };
+
+  const handleFavorite = (e) => {
+    const isChecked = e.target.checked;
+    onFavorite(todo, isChecked);
   };
 
   return (
@@ -60,6 +65,10 @@ export default function TodoItem({ todo, index, onDelete, onUpdate, onDone }) {
           {todo.sNo ? new Date(todo.sNo).toDateString() : ""}
         </span>
         <div className="actionBtns">
+          <label className="star">
+            <input type="checkbox" onChange={handleFavorite} checked={todo.isFavorite} />
+            <span>★</span>
+          </label>
           <button style={{ display: todo.status ? "" : "none" }} className="btn update" onClick={handleUpdate}> Update </button>
           <button className="btn delete" onClick={handleDelete}> Delete </button>
         </div>

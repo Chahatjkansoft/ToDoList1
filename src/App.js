@@ -5,7 +5,7 @@ import StartScreen from "./Components/StartScreen";
 import { useState, useEffect } from "react";
 
 function App() {
-  const { appData, editTodo, saveTodo, deleteTodo, updateTodo, markDone, saveUser, setEditTodo, resetData} = useTodos();
+  const { appData, editTodo, saveTodo, deleteTodo, updateTodo, markDone, saveUser, setEditTodo, resetData, markFavorite} = useTodos();
   const [showPopup, setShowPopup] = useState(false);
   const [todayDate, setTodayDate] = useState(new Date());
   const [isDark, setIsDark] = useState(false);
@@ -40,9 +40,7 @@ function App() {
       </div>
     )}
     <Todos todos={appData.todos} onDelete={deleteTodo} onUpdate={(todo) => {
-      updateTodo(todo);
-      setShowPopup(true);
-    }} onDone={markDone} />
+      updateTodo(todo);setShowPopup(true); }} onDone={markDone} onFavorite={markFavorite} />
     <button onClick={resetData}>Reset/Logout</button>
   </div>
   );
