@@ -47,7 +47,9 @@ export default function AddTodo({ saveTodo, editTodo }) {
           {/* 🔹 Description Input */}
           <div className="form-group col-md-6">
             <label htmlFor="desc">Comments</label>
-            <input type="text" id="desc" className="form-control" placeholder="Enter Description" value={description}
+            {/* <input type="tex" id="desc" className="form-control" placeholder="Enter Description" value={description}
+              onChange={(e) => setDescription(e.target.value)} /> */}
+            <textarea id="desc" className="form-control" placeholder="Enter Description" value={description}
               onChange={(e) => setDescription(e.target.value)} />
           </div>
         </div>
