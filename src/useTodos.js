@@ -25,9 +25,18 @@ function useTodos() {
             if(a.status !== b.status) { //done task comes last
                 return b.status - a.status;
             }
-            return b.sNo - a.sNo; // newer task comes first
+            return new Date(b.sNo) - new Date(a.sNo); // newer task comes first
         });
-        setAppData(prev => ({ ...prev, todos: sortedData }));
+        //setAppData(prev => ({ ...prev, todos: sortedData }));
+        const isDifferent =
+        JSON.stringify(sortedData) !== JSON.stringify(appData.todos);
+
+    if (isDifferent) {
+        setAppData(prev => ({
+            ...prev,
+            todos: sortedData
+        }));
+    }
     }, [appData,appData.todos]);
 
     // 🔹 Delete todo
@@ -75,7 +84,6 @@ function useTodos() {
 
     // 🔹 Mark as done
     const markDone = (item,flag) => {
-        console.log("Item=>",item," Flag=>",flag);
         const updatedTodos = appData.todos.map((t) => {
             if (t.sNo === item.sNo) {
                 return { ...t, status: flag }; // safer & clearer
@@ -92,7 +100,6 @@ function useTodos() {
         }));
     };
     const resetData = () => {
-        debugger;
         var data = JSON.parse(localStorage.getItem("appData"));
         if(data && data.todos && data.todos.length > 0) {
             if (!window.confirm("Reset will clear all your tasks and log you out. Are you sure?")) return;
@@ -102,7 +109,6 @@ function useTodos() {
     };
 
     const markFavorite = (item,flag) => {
-        debugger;
         const updatedTodos = appData.todos.map((t) => {
             if(t.sNo === item.sNo) {
                 return { ...t, isFavorite: flag };
