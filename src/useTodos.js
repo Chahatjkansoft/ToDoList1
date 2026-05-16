@@ -17,7 +17,18 @@ function useTodos() {
     // 🔹 Save to localStorage whenever todos change
     useEffect(() => {
         localStorage.setItem("appData", JSON.stringify(appData));
-    }, [appData]);
+        const sortedData = [...appData.todos].sort((a,b)=>{
+            if(a.isFavorite !== b.isFavorite) {// favrite task comes first
+                return b.isFavorite - a.isFavorite;
+            }
+
+            if(a.status !== b.status) { //done task comes last
+                return b.status - a.status;
+            }
+            return b.sNo - a.sNo; // newer task comes first
+        });
+        setAppData(prev => ({ ...prev, todos: sortedData }));
+    }, [appData,appData.todos]);
 
     // 🔹 Delete todo
     const deleteTodo = (item) => {
